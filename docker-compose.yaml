@@ -9,8 +9,8 @@ services:
       - database
     volumes:
       - 'mce_mediawiki_app:/var/www/html/images'
-      # PLEASE READ
-      # After initial setup, download LocalSettings.php to the same directory as docker-compose.yaml file uncomment line below  and use "docker-compose down && docker-compose up --force-recreate --no-deps" to inject LocalSettings.php into container
+      # PLEASE READ CAREFULLY
+      # After initial setup, download LocalSettings.php to the same directory as docker-compose.yaml file, uncomment line below  and use "docker-compose down && docker-compose up --force-recreate --no-deps" to inject LocalSettings.php into container
 #      - ./LocalSettings.php:/var/www/html/LocalSettings.php
 
   # during initial installation use "database" as DB host
