@@ -10,7 +10,11 @@ services:
     volumes:
       - 'mce_mediawiki_app:/var/www/html/images'
       # PLEASE READ CAREFULLY
-      # After initial setup, download LocalSettings.php to the same directory as docker-compose.yaml file, uncomment line below  and use "docker-compose down && docker-compose up --force-recreate --no-deps" to inject LocalSettings.php into container
+      # 1) After initial setup add to the very end of LocalSettings.php file these three lines :
+      #     wfLoadExtension( 'TinyMCE' );
+      #     $wgTinyMCEEnabled = true;
+      #     $wgDeprecationReleaseLimit = '1.x';
+      # 2) Upload updated LocalSettings.php to the same directory as your docker-compose.yaml file, uncomment line below and run "docker-compose down && docker-compose up --force-recreate --no-deps" commads to inject LocalSettings.php into container
 #      - ./LocalSettings.php:/var/www/html/LocalSettings.php
 
   # during initial installation use "database" as DB host
