@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mce_mediawiki:
+    image: mce_mediawiki
+    restart: always
+    ports:
+      - 80:80
+    links:
+      - database
+    volumes:
+      - 'mce_mediawiki_app:/var/www/html/images'
+      # PLEASE READ
+      # After initial setup, download LocalSettings.php to the same directory as docker-compose.yaml file uncomment line below  and use "docker-compose down && docker-compose up --force-recreate --no-deps" to inject LocalSettings.php into container
+#      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+
+  # during initial installation use "database" as DB host
+  database:
+    image: mariadb
+    restart: always
+    volumes:
+       - 'mce_mediawiki_db:/var/lib/mysql'
+    environment:
+      MYSQL_DATABASE: my_wiki
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: example
+volumes:
+    mce_mediawiki_app:
+     driver: local
+    mce_mediawiki_db:
+     driver: local
